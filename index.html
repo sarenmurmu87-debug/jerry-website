@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#050816">
+<title>JERRY | Gaming World</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#050816;color:#f4f8ff;font-family:Arial,sans-serif}
+header{text-align:center;padding:22px 12px;background:#080d1c;border-bottom:1px solid #123c65}
+.logo{font-size:30px;font-weight:900;letter-spacing:5px;color:#00c8ff}
+.tag{font-size:11px;letter-spacing:3px;color:#94b6d7;margin-top:8px}
+nav,.actions{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin-top:18px}
+button,.btn{border:1px solid #008cff;background:#0b1930;color:#00c8ff;border-radius:9px;padding:12px 15px;font-size:14px;cursor:pointer;text-decoration:none;display:inline-block}
+button:hover,.btn:hover{background:#007bff;color:white}
+main{max-width:720px;margin:auto;padding:20px 14px}
+.page{display:none;animation:fade .3s ease}
+.page.active{display:block}
+@keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+.panel{background:linear-gradient(145deg,#101a30,#080d19);border:1px solid #124e7a;border-radius:18px;padding:25px 17px;margin:15px 0;box-shadow:0 0 25px #007bff15}
+.hero{text-align:center;padding-top:35px;padding-bottom:35px}
+.orb{width:95px;height:95px;border:2px solid #00bfff;border-radius:50%;display:grid;place-items:center;margin:0 auto 20px;font-size:42px;color:#00c8ff;box-shadow:0 0 28px #008cff66}
+h1{font-size:34px;color:#00c8ff;margin:12px 0}
+h2{font-size:23px;color:#00c8ff}
+p{line-height:1.7;color:#bdcce0}
+.clock{font-size:22px;color:#00d5ff;margin:20px}
+.stats{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin:18px 0}
+.stat{padding:15px 5px;text-align:center;border:1px solid #1c4165;border-radius:12px;background:#080f20}
+.stat strong{display:block;font-size:22px;color:#00c8ff;margin-bottom:5px}
+.stat span{font-size:12px;color:#a9bdd4}
+.uid{word-break:break-all;color:white;background:#050a14;border:1px solid #17456c;border-radius:9px;padding:14px;margin:12px 0;font-size:18px}
+.muted{font-size:12px;color:#8ba6c5}
+footer{text-align:center;color:#657e9c;font-size:12px;padding:22px}
+</style>
+</head>
+<body>
+<header>
+ <div class="logo">JERRY ⚡</div>
+ <div class="tag">GAMING • ATTITUDE • MY WORLD</div>
+ <nav>
+  <button onclick="showPage('home')">Home</button>
+  <button onclick="showPage('gaming')">Gaming ID</button>
+  <button onclick="showPage('about')">About Me</button>
+ </nav>
+</header>
+<main>
+<section id="home" class="page active">
+ <div class="panel hero">
+  <div class="orb">J</div>
+  <div class="tag">WELCOME TO MY WORLD</div>
+  <h1>I'm Jerry</h1>
+  <p>Play with passion. Dream without limits.<br>Welcome to my gaming world.</p>
+  <div class="clock" id="clock">Loading...</div>
+  <div class="actions">
+   <button onclick="showPage('gaming')">Explore My Gaming World ↗</button>
+   <button onclick="showPage('about')">About Me</button>
+  </div>
+ </div>
+</section>
+<section id="gaming" class="page">
+ <div class="panel">
+  <div class="tag">FREE FIRE MAX</div>
+  <h1>🎮 JERRY</h1>
+  <p>My Gaming Profile</p>
+  <div class="stats">
+   <div class="stat"><strong>64</strong><span>LEVEL</span></div>
+   <div class="stat"><strong>4,180</strong><span>LIKES</span></div>
+  </div>
+  <p class="muted">PLAYER UID</p>
+  <div class="uid" id="uid">12764435571</div>
+  <div class="actions"><button onclick="copyUID()">Copy Gaming UID</button></div>
+  <p id="copyStatus" class="muted"></p>
+  <p class="muted">Details based on your shared profile screenshot.</p>
+  <div class="actions"><button onclick="showPage('home')">← Back Home</button></div>
+ </div>
+</section>
+<section id="about" class="page">
+ <div class="panel hero">
+  <div class="orb">J</div>
+  <h1>About Jerry</h1>
+  <p>I'm Jerry. I enjoy gaming, learning new things and building my own digital world.</p>
+  <p>⚡ Keep learning. Keep improving.</p>
+  <h2>Connect With Me</h2>
+  <p>Instagram: @dad_of_devil_4x</p>
+  <div class="actions">
+   <a class="btn" href="https://www.instagram.com/dad_of_devil_4x/" target="_blank" rel="noopener">Open Instagram ↗</a>
+   <button onclick="showPage('home')">← Back Home</button>
+  </div>
+ </div>
+</section>
+</main>
+<footer>JERRY GAMING WORLD © 2026</footer>
+<script>
+function showPage(id){
+ document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+ document.getElementById(id).classList.add('active');
+ window.scrollTo({top:0,behavior:'smooth'});
+}
+function updateClock(){document.getElementById('clock').textContent=new Date().toLocaleTimeString();}
+async function copyUID(){
+ const uid=document.getElementById('uid').textContent.trim();
+ const status=document.getElementById('copyStatus');
+ try{await navigator.clipboard.writeText(uid);status.textContent='Gaming UID copied!';}
+ catch(e){status.textContent='UID: '+uid+' — copy manually if needed.';}
+}
+updateClock();setInterval(updateClock,1000);
+</script>
+</body>
+</html>
